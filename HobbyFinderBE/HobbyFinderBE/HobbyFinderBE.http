@@ -1,0 +1,6 @@
+@HobbyFinderBE_HostAddress = http://localhost:5124
+
+GET {{HobbyFinderBE_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
