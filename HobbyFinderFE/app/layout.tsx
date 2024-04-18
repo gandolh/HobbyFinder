@@ -10,7 +10,7 @@ import { Inter } from "next/font/google";
 import React from 'react';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 import { theme } from '@/theme';
-import MyAppShell from './components/Layout/MyAppShell';
+import MyAppShell from './components/Layout/organisms/MyAppShell';
 
 const inter = Inter({ subsets: ["latin"] });
 
