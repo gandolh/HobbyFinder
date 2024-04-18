@@ -11,8 +11,8 @@ import {
   IconLogout,
   IconSwitchHorizontal,
 } from '@tabler/icons-react';
-import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from '@/styles/Sidebar.module.css';
+import Logo from './Logo';
 
 interface SidebarLinkProps {
   icon: typeof IconHome2;
@@ -55,9 +55,9 @@ export function Sidebar() {
 
   return (
     <nav className={classes.Sidebar}>
-      <Center>
-        <MantineLogo type="mark" size={30} />
-      </Center>
+      {/* <Center>
+        <Logo size={30}/>
+      </Center> */}
 
       <div className={classes.SidebarMain}>
         <Stack justify="center" gap={0}>

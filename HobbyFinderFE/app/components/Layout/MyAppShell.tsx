@@ -2,6 +2,8 @@
 import { AppShell, Burger } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Sidebar } from './Sidebar';
+import Logo from './Logo';
+
 
 interface MyAppShellProps {
     children: React.ReactNode;
@@ -27,9 +29,11 @@ export default function MyAppShell({ children } : MyAppShellProps) {
                     hiddenFrom="sm"
                     size="sm"
                 />
-                <div>Logo</div>
+                <div className='flex items-center font-bold'>
+                <Logo size={50}/>
+                <h1>Hobby finder</h1>
+                </div>
             </AppShell.Header>
-
             <AppShell.Navbar p="md"><Sidebar/></AppShell.Navbar>
 
             <AppShell.Main>{children}</AppShell.Main>
