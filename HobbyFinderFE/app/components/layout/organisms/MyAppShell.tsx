@@ -24,7 +24,9 @@ export default function MyAppShell({ children }: MyAppShellProps) {
             <AppShell.Header>
                 <Header opened={opened} toggle={toggle} />
             </AppShell.Header>
-            <AppShell.Navbar p="md"><Sidebar /></AppShell.Navbar>
+            <AppShell.Navbar p="md">
+                <Sidebar />
+            </AppShell.Navbar>
 
             <AppShell.Main>{children}</AppShell.Main>
         </AppShell>

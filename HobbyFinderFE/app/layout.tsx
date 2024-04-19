@@ -10,7 +10,6 @@ import { Inter } from "next/font/google";
 import React from 'react';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 import { theme } from '@/theme';
-import MyAppShell from './components/Layout/organisms/MyAppShell';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,10 +35,11 @@ export default function RootLayout({
       </head>
       <body>
         <MantineProvider theme={theme} >
-          <MyAppShell>
-              {children}
-          </MyAppShell>
+            {children}
         </MantineProvider>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script>
       </body>
     </html>
   );

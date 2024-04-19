@@ -1,6 +1,7 @@
 import Logo from '@layout/atoms/Logo';
 import { Burger, Button } from '@mantine/core';
-import { warnOptionHasBeenDeprecated } from 'next/dist/server/config';
+import Link from 'next/link'
+
 
 interface HeaderProps {
     opened: boolean;
@@ -24,8 +25,9 @@ const Header = ({ opened, toggle }: HeaderProps) => {
                     </div>
                 </div>
                 <div className='flex gap-2'>
-                    <Button variant="default"> Register </Button>                    
-                    <Button> Login </Button>
+                    <Link href="/login">
+                        <Button> Login </Button>
+                    </Link>
                 </div>
             </div>
         )
