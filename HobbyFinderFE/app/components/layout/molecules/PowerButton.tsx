@@ -3,7 +3,6 @@ import { IconChevronDown } from '@tabler/icons-react';
 import classes from '@styles/UserButton.module.css';
 import { UserProfile } from '@auth0/nextjs-auth0/client';
 import { ToggleThemeComp } from '@layout/atoms/ToggleThemeComp';
-import Link from 'next/link';
 
 interface PowerButtonProps {
     user: UserProfile;

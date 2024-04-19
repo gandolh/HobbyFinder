@@ -7,8 +7,10 @@ import {
     IconShoppingCartSearch,
     IconCalendarEvent,
   } from '@tabler/icons-react';
+  import type { SidebarMenuItem } from '@/types/SidebarMenuItem';
 
-  const sidebarMenuItems = [
+
+  const sidebarMenuItems : SidebarMenuItem[] = [
     { 
       icon: IconHome2, 
       label: 'Home', 
@@ -51,7 +53,7 @@ import {
       href: '/settings', 
       description: 'Adjust platform settings and preferences according to your needs.', 
     },
-  ];
+  ]; 
   
   export { sidebarMenuItems };
   
