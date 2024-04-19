@@ -10,6 +10,7 @@ import React from 'react';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 import { theme } from '@/theme';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
+import MyAppShell from '@layout/organisms/MyAppShell';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -37,7 +38,9 @@ export default function RootLayout({
       <UserProvider>
         <body>
           <MantineProvider theme={theme} >
-            {children}
+            <MyAppShell>
+              {children}
+            </MyAppShell>
           </MantineProvider>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script>

@@ -27,12 +27,7 @@ const AuthButtonsGroup = () => {
         <>
             {
                 isLoading ? <></> :
-                    (user ?
-                        (
-                            <>
-                                <a href="/api/auth/logout"><Button> Logout </Button ></a>
-                                <PowerButton authenticatedUser={user} />
-                            </>) :
+                    (user ? <PowerButton user={user} /> :
                             <a href="/api/auth/login"><Button> Login </Button></a>)
             }
         </>
@@ -55,7 +50,7 @@ const Header = ({ opened, toggle }: HeaderProps) => {
                         <h1>Hobby finder</h1>
                     </div>
                 </div>
-                <div className='flex gap-2'>
+                <div className='flex gap-2 items-center'>
                     <AuthButtonsGroup />
                 </div>
             </div>
