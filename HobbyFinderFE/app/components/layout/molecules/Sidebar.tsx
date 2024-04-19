@@ -2,19 +2,14 @@ import { useState } from 'react';
 import { Tooltip, UnstyledButton, Stack, rem } from '@mantine/core';
 import {
   IconHome2,
-  IconUser,
-  IconSettings,
   IconLogout,
-  IconUsersGroup,
-  IconUserStar,
-  IconShoppingCartSearch,
-  IconCalendarEvent,
   IconLogin,
 } from '@tabler/icons-react';
 import classes from '@styles/Sidebar.module.css';
 import Logo from '@layout/atoms/Logo';
 import Link from 'next/link';
 import { useUser } from '@auth0/nextjs-auth0/client';
+import { sidebarMenuItems } from './MenuItems';
 
 
 interface SidebarLinkProps {
@@ -25,15 +20,6 @@ interface SidebarLinkProps {
   href: string;
 }
 
-const mockdata = [
-  { icon: IconHome2, label: 'Home', href: '/' },
-  { icon: IconUsersGroup, label: 'Team sports', href: '/team' },
-  { icon: IconUserStar, label: 'Individual sports', href: '/individual' },
-  { icon: IconShoppingCartSearch, label: 'Hobbies shops', href: '/shop' },
-  { icon: IconCalendarEvent, label: 'My events', href: '/events' },
-  { icon: IconUser, label: 'Account', href: '/info' },
-  { icon: IconSettings, label: 'Settings', href: '/settings' },
-];
 
 
 
@@ -51,10 +37,10 @@ function SidebarLink({ icon: Icon, label, active, onClick, href }: SidebarLinkPr
 
 
 export function Sidebar() {
-  const [active, setActive] = useState(2);
+  const [active, setActive] = useState(0);
   const { user } = useUser();
 
-  const links = mockdata.map((link, index) => (
+  const links = sidebarMenuItems.map((link, index) => (
     <SidebarLink
       {...link}
       key={link.label}
@@ -88,3 +74,4 @@ export function Sidebar() {
     </nav>
   );
 }
+
