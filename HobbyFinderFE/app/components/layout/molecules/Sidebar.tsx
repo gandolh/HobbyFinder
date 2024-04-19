@@ -1,48 +1,58 @@
 import { useState } from 'react';
-import {  Tooltip, UnstyledButton, Stack, rem } from '@mantine/core';
+import { Tooltip, UnstyledButton, Stack, rem } from '@mantine/core';
 import {
   IconHome2,
-  IconGauge,
-  IconDeviceDesktopAnalytics,
-  IconFingerprint,
-  IconCalendarStats,
   IconUser,
   IconSettings,
   IconLogout,
-  IconSwitchHorizontal,
+  IconUsersGroup,
+  IconUserStar,
+  IconShoppingCartSearch,
+  IconCalendarEvent,
+  IconLogin,
 } from '@tabler/icons-react';
 import classes from '@styles/Sidebar.module.css';
 import Logo from '@layout/atoms/Logo';
+import Link from 'next/link';
+import { useUser } from '@auth0/nextjs-auth0/client';
+
 
 interface SidebarLinkProps {
   icon: typeof IconHome2;
   label: string;
   active?: boolean;
   onClick?(): void;
+  href: string;
 }
 
-function SidebarLink({ icon: Icon, label, active, onClick }: SidebarLinkProps) {
+const mockdata = [
+  { icon: IconHome2, label: 'Home', href: '/' },
+  { icon: IconUsersGroup, label: 'Team sports', href: '/team' },
+  { icon: IconUserStar, label: 'Individual sports', href: '/individual' },
+  { icon: IconShoppingCartSearch, label: 'Hobbies shops', href: '/shop' },
+  { icon: IconCalendarEvent, label: 'My events', href: '/events' },
+  { icon: IconUser, label: 'Account', href: '/info' },
+  { icon: IconSettings, label: 'Settings', href: '/settings' },
+];
+
+
+
+function SidebarLink({ icon: Icon, label, active, onClick, href }: SidebarLinkProps) {
   return (
     <Tooltip label={label} position="right" transitionProps={{ duration: 0 }}>
-      <UnstyledButton onClick={onClick} className={classes.link} data-active={active || undefined}>
-        <Icon style={{ width: rem(20), height: rem(20) }} stroke={1.5} />
-      </UnstyledButton>
+      <Link href={href} >
+        <UnstyledButton onClick={onClick} className={classes.link} data-active={active || undefined}>
+          <Icon style={{ width: rem(20), height: rem(20) }} stroke={1.5} />
+        </UnstyledButton>
+      </Link>
     </Tooltip>
   );
 }
 
-const mockdata = [
-  { icon: IconHome2, label: 'Home' },
-  { icon: IconGauge, label: 'Dashboard' },
-  { icon: IconDeviceDesktopAnalytics, label: 'Analytics' },
-  { icon: IconCalendarStats, label: 'Releases' },
-  { icon: IconUser, label: 'Account' },
-  { icon: IconFingerprint, label: 'Security' },
-  { icon: IconSettings, label: 'Settings' },
-];
 
 export function Sidebar() {
   const [active, setActive] = useState(2);
+  const { user } = useUser();
 
   const links = mockdata.map((link, index) => (
     <SidebarLink
@@ -50,6 +60,7 @@ export function Sidebar() {
       key={link.label}
       active={index === active}
       onClick={() => setActive(index)}
+      href={link.href}
     />
   ));
 
@@ -69,8 +80,10 @@ export function Sidebar() {
       </div>
 
       <Stack justify="center" gap={0}>
-        <SidebarLink icon={IconSwitchHorizontal} label="Change account" />
-        <SidebarLink icon={IconLogout} label="Logout" />
+        {user ?
+          <SidebarLink icon={IconLogout} label="Logout" href="/api/auth/logout" /> :
+          <SidebarLink icon={IconLogin} label="Login" href="/api/auth/login" />
+        }
       </Stack>
     </nav>
   );

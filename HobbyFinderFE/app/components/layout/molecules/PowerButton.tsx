@@ -25,41 +25,23 @@ const PowerButton = ({ user }: PowerButtonProps) => {
     return (
         <>
             <ToggleThemeComp />
-            <Popover width={300} trapFocus position="bottom" withArrow shadow="md">
-                <Popover.Target>
-                    <div className='flex gap-4'>
-                        <UnstyledButton className={classes.user}>
-                            <Group>
-                                <AvatarPic src={user.picture} radius='xl' />
-                                <div style={{ flex: 1 }}>
-                                    <Text size="sm" fw={500}>
-                                        {user.name}
-                                    </Text>
+            <div className='flex gap-4'>
+                <UnstyledButton className={classes.user}>
+                    <Group>
+                        <AvatarPic src={user.picture} radius='xl' />
+                        <div style={{ flex: 1 }}>
+                            <Text size="sm" fw={500}>
+                                {user.name}
+                            </Text>
 
-                                    <Text c="dimmed" size="xs">
-                                        {user.email}
-                                    </Text>
-                                </div>
+                            <Text c="dimmed" size="xs">
+                                {user.email}
+                            </Text>
+                        </div>
+                    </Group>
+                </UnstyledButton>
+            </div>
 
-                                <IconChevronDown style={{ width: rem(14), height: rem(14) }} stroke={1.5} />
-                            </Group>
-                        </UnstyledButton>
-                    </div>
-                </Popover.Target>
-                <Popover.Dropdown>
-                    <Stack gap={0}>
-                        <Link className='w-full ' href="/info">
-                            My info
-                        </Link>
-                        <Divider my={'xs'} />
-                        <Link className='w-full ' href="#">
-                            Others 🙂
-                        </Link>
-                        <Divider my={'xs'} />
-                        <Link className='w-full' href="/api/auth/logout"><Button fullWidth> Logout </Button></Link>
-                    </Stack>
-                </Popover.Dropdown>
-            </Popover>
         </>
     );
 }

@@ -16,9 +16,8 @@ import {
   Stack,
 } from '@mantine/core';
 import { GoogleButton } from '@layout/atoms/GoogleButton';
-import { TwitterButton } from '@layout/atoms/TwitterButton';
 
-export default function AuthenticationForm(props: PaperProps) {
+export default function AuthenticationForm() {
   const [type, toggle] = useToggle(['login', 'register']);
   const form = useForm({
     initialValues: {
@@ -35,7 +34,7 @@ export default function AuthenticationForm(props: PaperProps) {
   });
 
   return (
-    <Paper radius="md" p="xl" withBorder {...props} className=' myGlassEffect'>
+    <Paper radius="md" p="xl" withBorder className=' myGlassEffect'>
       <Text size="lg" fw={500}>
         Welcome to Hobby finder, {type} with
       </Text>
