@@ -1,11 +1,42 @@
 import Logo from '@layout/atoms/Logo';
 import { Burger, Button } from '@mantine/core';
-import Link from 'next/link'
+import { useUser } from '@auth0/nextjs-auth0/client';
+import { use, useEffect } from 'react';
+import PowerButton from '@layout/molecules/PowerButton';
 
 
 interface HeaderProps {
     opened: boolean;
     toggle: () => void;
+}
+
+
+const AuthButtonsGroup = () => {
+    const { user, error, isLoading } = useUser();
+
+    if (error) console.log(error);
+    useEffect(() => {
+        console.log(user);
+    }, [user]);
+
+    useEffect(() => {
+        console.log(error);
+    }, [error]);
+
+    return (
+        <>
+            {
+                isLoading ? <></> :
+                    (user ?
+                        (
+                            <>
+                                <a href="/api/auth/logout"><Button> Logout </Button ></a>
+                                <PowerButton authenticatedUser={user} />
+                            </>) :
+                            <a href="/api/auth/login"><Button> Login </Button></a>)
+            }
+        </>
+    );
 }
 
 const Header = ({ opened, toggle }: HeaderProps) => {
@@ -25,9 +56,7 @@ const Header = ({ opened, toggle }: HeaderProps) => {
                     </div>
                 </div>
                 <div className='flex gap-2'>
-                    <Link href="/login">
-                        <Button> Login </Button>
-                    </Link>
+                    <AuthButtonsGroup />
                 </div>
             </div>
         )
